@@ -212,7 +212,7 @@ public extension SIMDWordsInteger {
     var trailingZeroBitCount: Int {
         guard _isNonzero else { return Self.bitWidth }
         var result = 0
-        for word in words {
+        for word in SIMDWrapper<Vector>(wrappedValue: vector) {
             result += word.trailingZeroBitCount
             guard word == 0 else { break }
         }
