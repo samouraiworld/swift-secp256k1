@@ -42,7 +42,7 @@ struct SchnorrTestSuite {
         let privateKeyBytes = try! expectedPrivateKey.bytes
         let throwKey = try! P256K.Schnorr.PrivateKey(dataRepresentation: privateKeyBytes)
         let privateKey = try! P256K.Schnorr.PrivateKey(dataRepresentation: privateKeyBytes)
-        var messageDigest = "We're all Satoshi Nakamoto and a bit of Harold Thomas Finney II.".data(using: .utf8)!.bytes
+        var messageDigest = Array("We're all Satoshi Nakamoto and a bit of Harold Thomas Finney II.".utf8)
         var auxRand = try! "f50c8c99e39a82f125fa83186b5f2483f39fb0fb56269c755689313a177be6ea".bytes
 
         let signature = try! privateKey.signature(message: &messageDigest, auxiliaryRand: &auxRand)
