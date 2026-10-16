@@ -281,6 +281,16 @@ extension SIMDWordsIntegerTests {
         testBitCounting(Int128.self)
         testBitCounting(UInt128.self)
     }
+
+    func testUInt256TrailingZeroBitCountAcrossWords() {
+        expectEqual(256, UInt256.zero.trailingZeroBitCount)
+        expectEqual(0, UInt256.max.trailingZeroBitCount)
+        for bit in [0, 1, 63, 64, 65, 127, 128, 129, 191, 192, 193, 255] {
+            let value = UInt256(1) << bit
+            expectEqual(bit, value.trailingZeroBitCount)
+            expectEqual(0, (value | UInt256(1)).trailingZeroBitCount)
+        }
+    }
 }
 
 //===----------------------------------------------------------------------===//
